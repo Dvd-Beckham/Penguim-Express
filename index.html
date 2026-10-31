@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Penguin Express</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1 class="marca"><img class="logo" src="logo.png" alt="" width="48" height="48">Penguin <span>Express</span></h1>
+    <a class="atalho" href="#carrinho">Meu pedido <b id="badge">0</b></a>
+  </header>
+
+  <main class="layout">
+    <div class="coluna">
+      <section class="painel" aria-labelledby="t-montador">
+        <h2 id="t-montador">Monte seu lanche</h2>
+        <div class="montador">
+          <div class="preview" id="preview" role="img" aria-label="Prévia do lanche montado"></div>
+          <form id="form-montador" novalidate>
+            <fieldset><legend>Pão</legend><div class="opcoes" id="opt-pao"></div></fieldset>
+            <fieldset><legend>Hambúrguer</legend><div class="opcoes" id="opt-carne"></div></fieldset>
+            <fieldset><legend>Adicionais</legend><div class="opcoes" id="opt-extras"></div></fieldset>
+            <div class="rodape-montador">
+              <p>Seu lanche: <strong id="preco-montador">R$ 0,00</strong></p>
+              <button type="submit" class="btn">Adicionar ao pedido</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="painel" aria-labelledby="t-cardapio">
+        <h2 id="t-cardapio">Cardápio</h2>
+        <div class="abas" id="abas"></div>
+        <div class="grade" id="grade"></div>
+      </section>
+    </div>
+
+    <aside class="painel carrinho" id="carrinho" aria-labelledby="t-carrinho">
+      <h2 id="t-carrinho">Seu pedido</h2>
+      <ul class="itens" id="lista-carrinho"></ul>
+      <dl class="totais">
+        <div><dt>Subtotal</dt><dd id="subtotal">R$ 0,00</dd></div>
+        <div><dt>Entrega</dt><dd id="entrega">R$ 0,00</dd></div>
+        <div class="total"><dt>Total</dt><dd id="total">R$ 0,00</dd></div>
+      </dl>
+      <p class="dica" id="dica-frete"></p>
+      <button type="button" class="btn" id="btn-finalizar">Finalizar pedido</button>
+      <button type="button" class="btn-link" id="btn-limpar">Esvaziar carrinho</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

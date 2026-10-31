@@ -1,0 +1,143 @@
+:root {
+  /* Paleta fria da interface */
+  --tinta: #12263a;
+  --ketchup: #2a6fdb;   /* cor de destaque (botões, remover) */
+  --mostarda: #9fd8f5;  /* azul gelo (topo, seleções) */
+  --picles: #17705a;    /* confirmações */
+  --fundo: #eaf4fb;
+  --papel: #ffffff;
+  --suave: #54677a;
+  /* Cores dos ingredientes: não mudam com o tema */
+  --ing-borda: #221a14;
+  --borda: 2px solid var(--tinta);
+  --sombra: 4px 4px 0 var(--tinta);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color: var(--tinta);
+  background: var(--fundo);
+  line-height: 1.45;
+}
+
+button, input { font: inherit; }
+:focus-visible { outline: 3px solid var(--ketchup); outline-offset: 2px; }
+
+/* Topo */
+.topo {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: var(--mostarda);
+  border-bottom: var(--borda);
+}
+.marca { display: flex; align-items: center; gap: 10px; margin: 0; font-family: "Arial Black", Impact, sans-serif; font-size: clamp(1.1rem, 3.5vw, 1.6rem); letter-spacing: -0.02em; }
+.marca span { color: #0f4aa0; }
+.logo { height: 48px; width: auto; flex: none; }
+.atalho {
+  display: none; align-items: center; gap: 8px;
+  padding: 6px 14px; border: var(--borda); border-radius: 999px;
+  background: var(--papel); color: var(--tinta); font-weight: 700; text-decoration: none;
+}
+.atalho b { background: var(--ketchup); color: #fff; border-radius: 999px; min-width: 24px; padding: 0 7px; text-align: center; }
+
+/* Layout */
+.layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start;
+  max-width: 1180px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 40px) 48px;
+}
+.coluna { display: grid; gap: 24px; min-width: 0; }
+.painel { background: var(--papel); border: var(--borda); border-radius: 14px; box-shadow: var(--sombra); padding: 20px; }
+.painel h2 { margin: 0 0 16px; font-family: "Arial Black", Impact, sans-serif; font-size: 1.25rem; letter-spacing: -0.01em; }
+
+/* Montador */
+.montador { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+.preview { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3px; min-height: 260px; padding: 12px; background: var(--fundo); border: 2px dashed var(--tinta); border-radius: 12px; }
+.camada { width: 150px; height: 20px; border: 2px solid var(--ing-borda); border-radius: 10px; animation: entra .18s ease-out; }
+.camada.pao-topo { height: 44px; border-radius: 70px 70px 12px 12px; background: #e8a33d; }
+.camada.pao-base { height: 26px; border-radius: 6px 6px 22px 22px; background: #e8a33d; }
+.camada.carne { height: 28px; background: #6b3a21; }
+.camada.carne.frango { background: #d9a066; }
+.camada.carne.vegetal { background: #7a5a2a; }
+.camada.queijo { height: 12px; background: #ffc22e; border-radius: 3px 3px 14px 14px; }
+.camada.bacon { height: 10px; background: #b8372f; border-radius: 12px; }
+.camada.ovo { height: 14px; background: #fff3c4; border-radius: 40px; }
+.camada.cebola { height: 12px; background: #e6b25b; border-style: dotted; }
+.camada.salada { height: 14px; background: #3f7d3a; border-radius: 14px; }
+.camada.molho { height: 8px; background: #d3302b; border-radius: 12px; }
+.camada.geleia { height: 10px; background: #8e1b3a; border-radius: 12px; }
+@keyframes entra { from { transform: scale(.85); opacity: 0; } to { transform: none; opacity: 1; } }
+
+fieldset { border: 0; margin: 0 0 14px; padding: 0; min-width: 0; }
+legend { padding: 0; margin-bottom: 6px; font-weight: 800; }
+.opcoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.opcao { position: relative; }
+.opcao input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.opcao span { display: block; padding: 7px 12px; border: var(--borda); border-radius: 999px; background: var(--papel); font-size: .92rem; }
+.opcao small { color: var(--suave); }
+.opcao input:checked + span { background: var(--mostarda); font-weight: 700; }
+.opcao input:focus-visible + span { outline: 3px solid var(--ketchup); outline-offset: 2px; }
+.rodape-montador { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.rodape-montador p { margin: 0; }
+.rodape-montador strong { font-size: 1.3rem; }
+
+/* Botões */
+.btn { padding: 10px 18px; border: var(--borda); border-radius: 10px; background: var(--ketchup); color: #fff; font-weight: 800; cursor: pointer; box-shadow: 3px 3px 0 var(--tinta); transition: transform .08s, box-shadow .08s; }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--tinta); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--tinta); }
+.btn:disabled { background: #cfc6bb; color: var(--suave); cursor: not-allowed; box-shadow: none; transform: none; }
+.btn-link { display: block; margin: 10px auto 0; border: 0; background: none; color: var(--suave); text-decoration: underline; cursor: pointer; }
+
+/* Cardápio */
+.abas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.aba { padding: 6px 14px; border: var(--borda); border-radius: 999px; background: var(--papel); font-weight: 700; cursor: pointer; }
+.aba[aria-pressed="true"] { background: var(--tinta); color: #fff; }
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.produto { display: flex; flex-direction: column; gap: 4px; padding: 14px; border: var(--borda); border-radius: 12px; background: var(--fundo); }
+.produto .emoji { font-size: 2rem; line-height: 1; }
+.produto h3 { margin: 4px 0 0; font-size: 1rem; }
+.produto p { margin: 0; color: var(--suave); font-size: .85rem; flex: 1; }
+.produto .linha { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.produto .preco { font-weight: 800; }
+.produto .btn { padding: 6px 12px; font-size: .85rem; }
+
+/* Carrinho */
+.carrinho { position: sticky; top: 76px; max-height: calc(100vh - 96px); overflow-y: auto; }
+.itens { list-style: none; margin: 0 0 12px; padding: 0; }
+.vazio { padding: 18px 8px; text-align: center; color: var(--suave); }
+.item { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 10px 0; border-bottom: 1px dashed var(--tinta); }
+.item:last-child { border-bottom: 0; }
+.item-nome { font-weight: 700; overflow-wrap: anywhere; }
+.item-detalhe { grid-column: 1; margin: 0; color: var(--suave); font-size: .8rem; overflow-wrap: anywhere; }
+.item-preco { grid-column: 2; grid-row: 1; font-weight: 800; white-space: nowrap; }
+.item-acoes { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; }
+.qtd-btn { width: 28px; height: 28px; border: var(--borda); border-radius: 8px; background: var(--papel); font-weight: 800; cursor: pointer; line-height: 1; }
+.qtd-btn:hover { background: var(--mostarda); }
+.qtd { min-width: 22px; text-align: center; font-weight: 700; }
+.remover { margin-left: auto; border: 0; background: none; color: var(--ketchup); font-weight: 700; text-decoration: underline; cursor: pointer; }
+
+.totais { margin: 0 0 8px; padding-top: 10px; border-top: var(--borda); }
+.totais div { display: flex; justify-content: space-between; padding: 2px 0; }
+.totais dt, .totais dd { margin: 0; }
+.totais .total { margin-top: 6px; padding-top: 8px; border-top: 2px dashed var(--tinta); font-size: 1.25rem; font-weight: 900; }
+.dica { min-height: 1.3em; margin: 0 0 12px; font-size: .85rem; color: var(--picles); font-weight: 600; }
+#btn-finalizar { width: 100%; }
+.status { margin: 12px 0 0; font-weight: 700; color: var(--picles); }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .carrinho { position: static; max-height: none; }
+  .atalho { display: inline-flex; }
+}
+@media (max-width: 560px) {
+  .montador { grid-template-columns: minmax(0, 1fr); }
+  .preview { min-height: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camada { animation: none; }
+  .btn { transition: none; }
+}
